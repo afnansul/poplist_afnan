@@ -167,11 +167,12 @@ class LoginScreen extends StatelessWidget {
                   Container(
                     width: 280,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
                           "اسم المستخدم أو البريد الإلكتروني",
                           style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.right,
                         ),
                         SizedBox(height: 5),
                         Container(
@@ -192,11 +193,12 @@ class LoginScreen extends StatelessWidget {
                   Container(
                     width: 280,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
                           "كلمة المرور",
                           style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.right,
                         ),
                         SizedBox(height: 5),
                         Container(
@@ -273,6 +275,7 @@ class SignupScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Align(
                     alignment: Alignment.centerRight,
@@ -292,10 +295,95 @@ class SignupScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 30),
-                  CustomTextField(label: "اسم المستخدم"),
-                  CustomTextField(label: "البريد الإلكتروني"),
-                  CustomTextField(label: "كلمة المرور", isPassword: true),
-                  CustomTextField(label: "تأكيد كلمة المرور", isPassword: true),
+                  Container(
+                    width: 280,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "اسم المستخدم",
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.right,
+                        ),
+                        SizedBox(height: 5),
+                        TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Container(
+                    width: 280,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "البريد الإلكتروني",
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.right,
+                        ),
+                        SizedBox(height: 5),
+                        TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Container(
+                    width: 280,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "كلمة المرور",
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.right,
+                        ),
+                        SizedBox(height: 5),
+                        TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Container(
+                    width: 280,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "تأكيد كلمة المرور",
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.right,
+                        ),
+                        SizedBox(height: 5),
+                        TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   SizedBox(height: 20),
                   Container(
                     width: 280,
@@ -342,44 +430,6 @@ class SignupScreen extends StatelessWidget {
   }
 }
 
-class CustomTextField extends StatelessWidget {
-  final String label;
-  final bool isPassword;
-
-  const CustomTextField({required this.label, this.isPassword = false});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(height: 5),
-        Container(
-          width: 280,
-          height: 48,
-          child: TextField(
-            obscureText: isPassword,
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              border: OutlineInputBorder(),
-            ),
-          ),
-        ),
-        SizedBox(height: 15),
-      ],
-    );
-  }
-}
 
 class ResetPasswordScreen extends StatelessWidget {
   @override
@@ -395,9 +445,21 @@ class ResetPasswordScreen extends StatelessWidget {
             SizedBox(height: 20),
             InputField(hint: "عنوان البريد الإلكتروني"),
             SizedBox(height: 20),
-            ConfirmButton(text: "تأكيد البريد الإلكتروني", onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => VerifyCodeScreen()));
-            }),
+            //--------
+            Container(
+              width: 280,
+              height: 48,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFFFFCC63),
+                ),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => VerifyCodeScreen()));
+                },
+                child: Text("تأكيد البريد الإلكتروني", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+            ),
+            //_______
             SizedBox(height: 10),
             BackButtonWidget()
           ],
@@ -425,9 +487,22 @@ class VerifyCodeScreen extends StatelessWidget {
               children: List.generate(4, (index) => CodeInputBox()),
             ),
             SizedBox(height: 20),
-            ConfirmButton(text: "تأكيد الرمز", onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => NewPasswordScreen()));
-            }),
+            //--------
+            Container(
+              width: 280,
+              height: 48,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFFFFCC63),
+                ),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => NewPasswordScreen()));
+                },
+                child: Text("تأكيد الرمز", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+            ),
+            //_______
+
             SizedBox(height: 10),
             Text("إعادة إرسال رمز التأكيد 00:29", style: TextStyle(color: Colors.white))
           ],
@@ -451,9 +526,22 @@ class NewPasswordScreen extends StatelessWidget {
             SizedBox(height: 20),
             InputField(hint: "تأكيد كلمة المرور", obscureText: true),
             SizedBox(height: 20),
-            ConfirmButton(text: "تأكيد كلمة المرور", onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-            }),
+            //--------
+            Container(
+              width: 280,
+              height: 48,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFFFFCC63),
+                ),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                },
+                child: Text("تأكيد كلمة المرور", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+            ),
+            //_______
+          
             SizedBox(height: 10),
             BackButtonWidget()
           ],
